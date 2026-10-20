@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novo App Inbox</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Novo App Inbox</h1>
+    <p class="subtitle">Envie uma mensagem de inbox no app para os contatos desta jornada.</p>
+
+    <div class="form-group">
+      <label for="title">Título <span class="required">*</span>
+        <button type="button" class="btn-text" data-target="title">+ Dado variável</button>
+      </label>
+      <select class="var-picker hidden" data-target="title"></select>
+      <div class="rich" id="titleEditor" contenteditable="true" data-for="title" data-single="1"
+           data-placeholder="Ex.: Você tem uma novidade!"></div>
+      <input type="hidden" id="title" />
+      <small><span class="counter" data-for="title"></span> · variáveis não contam</small>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Mensagem <span class="required">*</span>
+        <button type="button" class="btn-text" data-target="message">+ Dado variável</button>
+      </label>
+      <select class="var-picker hidden" data-target="message"></select>
+      <div class="rich rich-multi" id="messageEditor" contenteditable="true" data-for="message"
+           data-placeholder="Escreva a mensagem que o cliente verá no inbox do app"></div>
+      <input type="hidden" id="message" />
+      <small><span class="counter" data-for="message"></span> · variáveis não contam</small>
+    </div>
+
+    <!-- Imagem entra no futuro: remover "hidden" aqui para habilitar a escolha -->
+    <div class="form-group hidden" id="grupoMidiaTipo">
+      <label for="midiaTipo">Imagem ou ícone <span class="required">*</span></label>
+      <select id="midiaTipo">
+        <option value="icone">Ícone</option>
+        <option value="imagem">Imagem</option>
+      </select>
+    </div>
+
+    <div class="form-group" id="grupoIcone">
+      <label for="icone">Ícone <span class="required">*</span></label>
+      <select id="icone"></select>
+    </div>
+
+    <div class="form-group hidden" id="grupoImagem">
+      <label for="imagemUrl">URL da imagem <span class="required">*</span></label>
+      <input type="url" id="imagemUrl" placeholder="https://..." />
+    </div>
+
+    <div class="form-group">
+      <label for="cta">CTA (texto do botão)</label>
+      <input type="text" id="cta" maxlength="30" placeholder="Ex.: Ver agora" />
+      <small><span class="counter" data-for="cta"></span></small>
+    </div>
+
+    <div class="form-group">
+      <label>Tipo de URL</label>
+      <div class="radio-group">
+        <label><input type="radio" name="urlTipo" value="nenhum" checked /> Sem URL</label>
+        <label><input type="radio" name="urlTipo" value="interno" /> Interno</label>
+        <label><input type="radio" name="urlTipo" value="externo" /> Externo</label>
+      </div>
+    </div>
+
+    <div class="form-group hidden" id="grupoUrl">
+      <label for="url">URL <span class="required">*</span></label>
+      <input type="text" id="url" placeholder="Ex.: app://inbox/oferta/123 ou https://..." />
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="dataInicio">Data inicial da mensagem</label>
+        <input type="datetime-local" id="dataInicio" />
+      </div>
+      <div class="form-group">
+        <label for="dataFim">Data final da mensagem</label>
+        <input type="datetime-local" id="dataFim" />
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Jornada atual:</strong> <span id="journeyName">carregando…</span>
+    </div>
+
+    <div class="info-box">
+      <strong>Dados enviados automaticamente:</strong>
+      <ul>
+        <li><code>contactKey</code>, <code>journeyName</code>, <code>journeyId</code>, <code>activityId</code></li>
+        <li><code>requestId</code>, <code>eventDate</code>, <code>tipoNotificacao</code> = Novidade</li>
+        <li><code>classificacao</code> = Padrão, <code>midiaTipo</code> = icone</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Postmonger: comunicação entre o iframe e o Journey Builder (hospedado localmente) -->
+  <script src="js/postmonger.min.js"></script>
+  <script src="js/customActivity.js"></script>
+</body>
+</html>
