@@ -81,6 +81,8 @@ src/main/resources/static/
 
 ## Variáveis de ambiente
 
+Template em [`.env.example`](.env.example). O código lê apenas `System.getenv`; o `.env` (ignorado pelo git) serve para o deploy injetar os valores.
+
 | Variável | Onde | Descrição |
 |---|---|---|
 | `BASE_URL` | API | URL pública da API; injetada no `config.json` |
